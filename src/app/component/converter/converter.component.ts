@@ -25,13 +25,13 @@ export class ConverterComponent {
     const ffmpeg = new FFmpeg();
     ffmpeg.on('log', (message: any) => console.log(message));
     await ffmpeg.load({
-      coreURL: '/assets/core/package/dist/umd/ffmpeg-core.js'
+      coreURL: '/assets/@ffmpeg/core/package/dist/umd/ffmpeg-core.js'
     })
     const name = this.file!.name;
     this.fileName = `${name.split(".")[0]}.m4a`;
     await ffmpeg.writeFile(name, await fetchFile(this.file));
-    await ffmpeg.exec(['-i', name, '-c:a', 'aac', '-vn', 'output.m4a']);
-    const audioData = await ffmpeg.readFile('output.m4a');
+    await ffmpeg.exec(['-i', name, '-c:a', 'aac', '-vn', this.fileName]);
+    const audioData = await ffmpeg.readFile(this.fileName);
     this.audioSrc = URL.createObjectURL(new Blob([(audioData as Uint8Array).buffer], {type: 'audio/m4a'}));
   }
 }

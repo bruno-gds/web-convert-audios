@@ -27,12 +27,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
+              "src/814.ffmpeg.js",
+              "src/814.ffmpeg.js.map",
               "src/assets"
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./src/assets/@ffmpeg/ffmpeg/package/dist/umd/ffmpeg.js",
+              "./src/assets/@ffmpeg/util/package/dist/umd/index.js"
+            ]
           },
           "configurations": {
             "production": {
