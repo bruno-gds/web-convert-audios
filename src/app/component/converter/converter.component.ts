@@ -13,15 +13,15 @@ export class ConverterComponent {
   file?: File;
   audioSrc?: string;
   fileName: string = "";
+  startConvert: string = "";
 
   onFileSelected(event: any): void {
     this.file = event.target.files[0];
-    console.log(this.file);
     this.transcode()
   }
 
   async transcode() {
-    console.log('Transcoding...');
+    this.startConvert = "Transcoding...";
     const ffmpeg = new FFmpeg();
     ffmpeg.on('log', (message: any) => console.log(message));
     await ffmpeg.load({
@@ -32,6 +32,7 @@ export class ConverterComponent {
     await ffmpeg.writeFile(name, await fetchFile(this.file));
     await ffmpeg.exec(['-i', name, '-c:a', 'aac', '-vn', this.fileName]);
     const audioData = await ffmpeg.readFile(this.fileName);
+    this.startConvert = "";
     this.audioSrc = URL.createObjectURL(new Blob([(audioData as Uint8Array).buffer], {type: 'audio/m4a'}));
   }
 }
