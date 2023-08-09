@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  convert:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+        - ./dist/convert-audio-browser:/usr/share/nginx/html

@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "cp -r dist/webConvertAudio-ffmpeg/assets/ffmpeg/package/dist/umd/814.ffmpeg.* dist/webConvertAudio-ffmpeg",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
